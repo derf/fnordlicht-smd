@@ -1,0 +1,14 @@
+RESET(id)
+
+((bool)available) = ENUMERATE(id, mask)
+
+((int)hwrev, (int)swrev) = VERSION(id)
+
+data = ECHOTEST(data)
+
+(R, G, B) = STATUS(id)
+
+SETCOLOR(id, R, G, B)
+
+FADETOCOLOR(id, R, G, B, duration)
+

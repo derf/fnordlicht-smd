@@ -1,0 +1,2 @@
+gcc -c -fPIC -I/usr/include/lua50 lualibusb.c -o lualibusb.o
+gcc -lusb -llualib50 -shared -Wl,-soname,libluausb.so.0.2 -o libluausb.so.0.2  lualibusb.o

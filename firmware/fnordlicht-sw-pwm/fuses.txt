@@ -1,0 +1,57 @@
+=== ATMEGA48/88/168 ===
+
+-> external crystal: CKSEL3 = 0
+                     CKSEL2 = 1
+                     CKSEL1 = 1
+                     CKSEL0 = 1
+
+-> startup for external clock: BOD: SUT1 = 1
+                                    SUT0 = 0
+
+-> watchdog-timer: system reset mode: WDTON = 0
+                                      WDE = x
+				      WDIE = x
+
+-> debug-wire: disabled: DWEN = 0
+
+-> application-reset: BOOTRST = 1
+
+-> Bodlevel: 4.3V: BODLEVEL2 = 1
+                   BODLEVEL1 = 0
+                   BODLEVEL0 = 0
+-> EESAVE: eeprom is not preserved through chiperase: EESAVE = 1
+
+-> Serial Programming Enabled: SPIEN = 0
+
+-> 1024words bootloader: BOOTSZ0 = 0
+                         BOOTSZ1
+
+-> Reset as Reset-pin: RSTDISBL = 1
+
+-> Disable Clock Output to CLKO: CKOUT = 1
+
+
+lFuse = 0b11100111 = 0xe7
+Bit0 = CKSEL0    (0) = 1
+Bit1 = CKSEL1    (1) = 1
+Bit2 = CKSEL2    (0) = 1
+Bit3 = CKSEL3    (0) = 0
+Bit4 = SUT0      (0) = 0
+Bit5 = SUT1      (1) = 1
+Bit6 = CKOUT     (1) = 1
+Bit7 = CKDIV8    (1) = 1
+
+hFuse = 0b10001100 = 0x8c
+Bit0 = BODLEVEL0 (1) = 0
+Bit1 = BODLEVEL1 (1) = 0
+Bit2 = BODLEVEL2 (1) = 1
+Bit3 = EESAVE    (1) = 1
+Bit4 = WDTON     (1) = 0
+Bit5 = SPIEN     (0) = 0
+Bit6 = DWEN      (1) = 0
+Bit7 = RSTDISBL  (1) = 1
+
+eFuse = 0b00000001 = 0x01
+Bit0 = BOOTRST  = 1
+Bit1 = BOOTSZ0  = 0
+Bit2 = BOOTSZ1  = 0

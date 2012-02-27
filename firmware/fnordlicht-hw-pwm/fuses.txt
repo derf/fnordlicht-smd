@@ -1,0 +1,26 @@
+=== ATMEGA48/88/168 ===
+
+lFuse = 0b11100111 = 0xe7
+Bit0 = CKSEL0    (0) = 1 Ext Full Swing Crystal > 8MHz
+Bit1 = CKSEL1    (1) = 1
+Bit2 = CKSEL2    (0) = 1
+Bit3 = CKSEL3    (0) = 0
+Bit4 = SUT0      (0) = 0 Startuptime 16k + 4.1ms
+Bit5 = SUT1      (1) = 1
+Bit6 = CKOUT     (1) = 1 No Clockout
+Bit7 = CKDIV8    (1) = 1 Don't divide Clock by 8
+
+hFuse = 0b10001100 = 0xdf
+Bit0 = BODLEVEL0 (1) = 0 Brown Out by 4.3V
+Bit1 = BODLEVEL1 (1) = 0
+Bit2 = BODLEVEL2 (1) = 1
+Bit3 = EESAVE    (1) = 1 Erase Eeprom on Chip Erase
+Bit4 = WDTON     (1) = 1 Watchdog Always On
+Bit5 = SPIEN     (0) = 0 SPI Enabled
+Bit6 = DWEN      (1) = 1 Debugwire Disabled
+Bit7 = RSTDISBL  (1) = 1 Reset Pin used as Reset
+
+eFuse = 0b00000001 = 0x00
+Bit0 = BOOTRST  = 0 Boot from Bootloader
+Bit1 = BOOTSZ0  = 0 2048 byte bootloader
+Bit2 = BOOTSZ1  = 0

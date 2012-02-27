@@ -1,0 +1,104 @@
+***************************** USBNotify *******************************
+
+
+Fnordlicht-SMD is a free software/hardware project to power and control
+some high-power LEDs via USB.
+It is a SMD version of the Fnordlicht http://www.lochraster.org/fnordlicht
+by FD0.
+It is intended to:
+(a) provide controllable ligthing
+(b) provide software control notification about certain events to the
+    user
+(c) as an experimental/educational environment to learn working with
+    microcontrollers and usb
+
+
+============================== License ================================
+GPL v2, see LICENSE-file
+
+=============================== Author ================================
+Timo Boettcher <fnordlicht@spida.net>
+
+Please send comments, bugreports and pizza to sbnotify@spida.net
+
+============================== Homepage ===============================
+http://www.spida.net/projects/hardware/fnordlicht-smd/
+
+============================== Hardware ===============================
+The Fnordlicht-SMD hardware is a double sided PCB. Except the 5mm
+high-power LEDs, all parts are SMD (surface mounted devices). The
+schematic and some rendered images are in the hardware-directory.
+
+============================== Firmware ===============================
+The firmware for the device is in the /firmware directory.
+There are two versions of the firmware:
+(a) blinktest--do-not-use-with-usb
+    This firmware is intended to test the microcontroller and all
+    connections. NEVER use it with USB connected, as it will test the
+    USB-Connection with signals that are NOT USB-COMPLIANT.
+    Always use an external powersupply when using this software.
+(b) fnordlicht
+    This firmware is the primary firmware for the device, and enables
+    a software on the USB-host to control the 4 LED-channels.
+    It uses obdevs free software-usb-stack, see
+    http://www.obdev.at/products/vusb for details.
+    Compile it with
+      make USBSERIALNUMBER=xx HW_VERSION=2
+    where xx is your serialnumber (integer).
+
+Additionally there is the usbload bootloader, which emulates a usbasp
+programmer and can be used to install/update the firmware on the
+microcontroller. It is preinstalled on the microcontrollers delivered
+in the kits sold from lochraster.org.
+There are two ways to activate it:
+
+- There is no further software installed
+- A reset is triggered via the reset-pin (the pins on the ISP header next
+   to the USB-connector have to be shorted)
+
+When the bootloader is activated, the blue LEDs will ligth and the
+white LEDs will blink with approximately 2 Hz.
+
+The firmware can now be installed with avrdude:
+   avrdude -p m88 -c usbasp -P usb -U flash:w:usbnotify.hex
+
+
+It shouldn't be possible to overwrite or otherwise damage the bootloader
+using the programming feature of the bootloader
+
+
+To install the firmware on a factory-fresh microcontroller, an
+isp-programmer, like the AVRISPmkII, is necessary. The bootloader can be
+installed using the following commands:
+  avrdude -p m88 -c avrispmkII -P usb -U flash:w:usbload.hex
+  avrdude -p m88 -c avrispmkII -P usb -U lfuse:w:0xE7:m -U hfuse:w:0xDF:m -U lock:w:0x2f:m
+
+
+========================== Control-Software ===========================
+The Control-Software for the device is in the /host directory.
+There are currently six versions of the Control-Software:
+(a) python
+    The python version of the Control-Software is written in python
+    and uses the pyusb library. This is the reference implementation.
+(b) c
+    The c version of the Control-Software is written in c and uses the
+    libusb library.
+(c) perl
+(c) ruby
+(d) java
+(e) lua
+
+
+============================= Disclaimer ==============================
+As this is software controlled hardware, it may break all kinds of
+things when done wrong. This includes the USB-Port and its controller
+that is driving the USB-Port.
+The LEDs are really bright, so do not look into them with unprotected
+eyes, you might suffer permanent eye-damage.
+The LEDs are driven with currents (27-39mA) higher than specified for
+these LEDs. This means the LEDs may not be powered permanently, so
+that they have time to cool down between uses. It is possible to
+simulate permanent lighting with fast pulsing, though.
+Don't use it to get notified about real important things, notification
+may fail.
+
