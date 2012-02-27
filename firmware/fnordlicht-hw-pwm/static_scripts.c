@@ -100,7 +100,7 @@ void execute_script_threads(void)
 	/* check for channels which reached their targets */
 	for (i=0; i<PWM_CHANNELS; i++) {
 		if (global_pwm.channels[i].flags.target_reached) {
-			target_mask |= global_pwm.channels[i].mask;
+            script_threads[0].flags.channel_target_reached |= 1;
 			global_pwm.channels[i].flags.target_reached = 0;
 		}
 	}
@@ -249,9 +249,9 @@ uint8_t opcode_handler_fade_channel(uint8_t parameters[], struct thread_t *curre
 #endif
 
 	global_pwm.channels[parameters[0]].target_brightness = parameters[1];
-	global_pwm.channels[parameters[0]].speed_l = LOW(speed);
+/*	global_pwm.channels[parameters[0]].speed_l = LOW(speed);
 	global_pwm.channels[parameters[0]].speed_h = HIGH(speed);
-
+*/
 	return OP_RETURN_OK;
 }
 /* }}} */

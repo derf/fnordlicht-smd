@@ -8,6 +8,8 @@
  * This Revision: $Id: usbdrv.c 740 2009-04-13 18:23:31Z cs $
  */
 
+#ifdef USB
+
 #include "usbportability.h"
 #include "usbdrv.h"
 #include "oddebug.h"
@@ -623,3 +625,5 @@ USB_PUBLIC void usbInit(void)
 }
 
 /* ------------------------------------------------------------------------- */
+
+#endif

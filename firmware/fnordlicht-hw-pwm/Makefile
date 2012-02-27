@@ -16,11 +16,12 @@ TARGET = fnordlicht
 
 # c sourcecode files
 # eg. 'test.c foo.c foobar/baz.c'
-SRC = $(TARGET).c usbdrv/usbdrv.c pwm.c static_scripts.c
+SRC = $(TARGET).c pwm.c static_scripts.c
+# SRC += usbdrv/usbdrv.c
 
 # asm sourcecode files
 # eg. 'interrupts.S foobar/another.S'
-ASRC = usbdrv/usbdrvasm.S
+#ASRC = usbdrv/usbdrvasm.S
 
 # headers which should be considered when recompiling
 # eg. 'global.h foobar/important.h'

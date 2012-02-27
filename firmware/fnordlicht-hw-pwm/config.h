@@ -43,7 +43,7 @@
 
 /* include the script intpreter per default */
 #ifndef STATIC_SCRIPTS
-#define STATIC_SCRIPTS 0
+#define STATIC_SCRIPTS 1
 #endif
 
 /* disable rc5-decoder per default */
@@ -68,7 +68,7 @@
 
 /* enable USB */
 #ifndef USB
-#define USB 1
+#define USB 0
 #endif
 
 /*************************************************************
