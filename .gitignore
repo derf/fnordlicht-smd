@@ -1,0 +1,6 @@
+.dep/
+fnordlicht.elf
+fnordlicht.hex
+fnordlicht.o
+pwm.o
+static_scripts.o
