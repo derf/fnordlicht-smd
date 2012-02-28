@@ -43,7 +43,12 @@
 
 /* include the script intpreter per default */
 #ifndef STATIC_SCRIPTS
-#define STATIC_SCRIPTS 1
+#define STATIC_SCRIPTS 0
+#endif
+
+/* fading to random color */
+#ifndef RANDOM
+#define RANDOM 1
 #endif
 
 /* disable rc5-decoder per default */
@@ -53,7 +58,7 @@
 
 /* disable scripts speed control per default */
 #ifndef SCRIPT_SPEED_CONTROL
-#define SCRIPT_SPEED_CONTROL 0
+#define SCRIPT_SPEED_CONTROL 1
 #endif
 
 /* enable this if you want to control a fnordlicht via RS485 */
@@ -63,7 +68,7 @@
 
 /* test all LEDs on powerup */
 #ifndef COLORFUL_INIT
-#define COLORFUL_INIT 1
+#define COLORFUL_INIT 0
 #endif
 
 /* enable USB */

@@ -85,6 +85,14 @@ void init_output(void) { /* {{{ */
 }
 /* }}} */
 
+#if RANDOM
+unsigned char pwmtable[16] = {
+     0, 2, 3, 4, 6, 8, 11, 16, 23, 32, 45, 64, 90, 128, 181, 255
+};
+unsigned char whitetable[8] = {
+     0, 2, 4, 11, 64, 128, 181, 255
+};
+#endif
 
 #if USB
 USB_PUBLIC uchar usbFunctionSetup(uchar data[8]) { /* {{{ */
@@ -247,6 +255,11 @@ int main(void) { /* {{{ */
 	reboot = 0;
 	wdt_enable(WDTO_1S);
 
+#if RANDOM
+    unsigned long int cnt = 1000;
+    unsigned char white, red, green, blue;
+#endif
+
 	init_output();
 
 #if COLORFUL_INIT
@@ -351,6 +364,24 @@ int main(void) { /* {{{ */
 		if (global.flags.new_cycle) {
 			global.flags.new_cycle = 0;
 			update_brightness();
+
+#if RANDOM
+            if (++cnt == 1200) {
+               red   = pwmtable[rand() % 16];
+               green = pwmtable[rand() % 16];
+               blue  = pwmtable[rand() % 16];
+               white = whitetable[rand() % 8];
+               set_fade(1, blue, 800);
+               set_fade(2, green, 800);
+               set_fade(3, red, 800);
+               if (blue + green + red <= 32)
+                    set_fade(0, white, 800);
+               else
+                    set_fade(0, 0, 800);
+               cnt = 0;
+            }
+#endif
+
 #if STATIC_SCRIPTS
 			execute_script_threads();
 #endif
