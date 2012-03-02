@@ -318,7 +318,7 @@ int main(void) { /* {{{ */
 	//script_threads[0].flags.disabled = 0;
 	
 	script_threads[0].handler.execute = &memory_handler_flash;
-	script_threads[0].handler.position = (uint16_t) &blinken;
+	script_threads[0].handler.position = (uint16_t) &strobo_rgb;
 	script_threads[0].flags.disabled = 0;
 	#endif
 
