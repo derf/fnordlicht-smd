@@ -34,6 +34,7 @@
 
 #include <avr/io.h>
 #include <stdint.h>
+#include <avr/eeprom.h>
 #include <avr/interrupt.h>
 #include <avr/pgmspace.h>
 #include <avr/wdt.h>
@@ -92,6 +93,7 @@ unsigned char pwmtable[16] = {
 unsigned char whitetable[8] = {
      0, 2, 4, 11, 64, 128, 181, 255
 };
+unsigned int seed EEMEM;
 #endif
 
 #if USB
@@ -258,6 +260,8 @@ int main(void) { /* {{{ */
 #if RANDOM
     unsigned long int cnt = 1000;
     unsigned char white, red, green, blue;
+    unsigned char save = 0;
+    srand(eeprom_read_word(&seed));
 #endif
 
 	init_output();
@@ -379,6 +383,9 @@ int main(void) { /* {{{ */
                else
                     set_fade(0, 0, 800);
                cnt = 0;
+
+               if (++save == 100)
+                    eeprom_write_word(&seed, rand());
             }
 #endif
 
