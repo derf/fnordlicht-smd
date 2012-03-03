@@ -88,10 +88,10 @@ void init_output(void) { /* {{{ */
 
 #if RANDOM
 unsigned char pwmtable[16] = {
-     0, 2, 3, 4, 6, 8, 11, 16, 23, 32, 45, 64, 90, 128, 181, 255
+     0, 2, 3, 4, 6, 8, 11, 16, 23, 32, 45, 64, 90, 128, 181, 210
 };
 unsigned char whitetable[8] = {
-     0, 2, 4, 11, 64, 128, 181, 255
+     0, 2, 4, 11, 64, 128, 181, 210
 };
 unsigned int seed EEMEM;
 #endif
